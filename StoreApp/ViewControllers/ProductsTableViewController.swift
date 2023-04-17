@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class ProductsTableViewController : UITableViewController {
     private var category: CategoryModel
@@ -17,11 +18,25 @@ class ProductsTableViewController : UITableViewController {
         self.category = category
         super.init(nibName: nil, bundle: nil)
     }
+    
+    lazy var addProductBarButtonItem:UIBarButtonItem = {
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addProductButtonPressed))
+        return barButtonItem
+    }()
+    
+    @objc private func addProductButtonPressed(_ sender: UIBarButtonItem) {
+        let addProductVC = AddProductViewController()
+        let navCtrl = UINavigationController(rootViewController: addProductVC)
+        present(navCtrl, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = category.name
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ProductTableViewCell")
-        
+        navigationItem.rightBarButtonItem = addProductBarButtonItem
         
         Task {
             await populateProducts()
@@ -48,10 +63,9 @@ class ProductsTableViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath)
         
         let product = products[indexPath.row]
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = product.title
-        configuration.secondaryText = product.description
-        cell.contentConfiguration = configuration
+        cell.contentConfiguration = UIHostingConfiguration(content: {
+            ProductCellView(product: product)
+        })
         return cell
     }
 }
