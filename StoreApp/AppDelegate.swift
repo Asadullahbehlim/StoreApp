@@ -17,8 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        window?.rootViewController = CategoriesTableViewController()
-        
+        window?.rootViewController = UINavigationController(rootViewController: CategoriesTableViewController())
+
         return true
+
+//        let navController = UINavigationController(rootViewController: CategoriesTableViewController())
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+//        window.rootViewController = navController
+//        window.makeKeyAndVisible()
+//        self.window = window
+//
+//        return true
+//
+        
     }
 }

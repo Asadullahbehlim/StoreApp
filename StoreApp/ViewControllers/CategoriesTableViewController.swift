@@ -10,18 +10,21 @@ import UIKit
 class CategoriesTableViewController: UITableViewController {
 
     private var client = StoreHTTPClient()
-    private var categories: [DataModel] = []
+    private var categories: [CategoryModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         title = "Categories"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
         Task {
            await populateCategories()
             tableView.reloadData()
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
         }
         
     }
+    
     private func populateCategories() async  {
       do {
          categories = try await client.getAllCategories()
@@ -31,11 +34,17 @@ class CategoriesTableViewController: UITableViewController {
             
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = categories[indexPath.row]
+        self.navigationController?.pushViewController(ProductsTableViewController(category: category), animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator
         
