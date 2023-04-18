@@ -11,12 +11,15 @@ import SwiftUI
 
 class AddProductViewController: UIViewController {
     
+    private var selectedCategory: CategoryModel?
+    
     lazy var titleTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Enter title"
         textfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textfield.leftViewMode = .always
         textfield.borderStyle = .roundedRect
+        textfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return textfield
     }()
     
@@ -46,9 +49,41 @@ class AddProductViewController: UIViewController {
         return textView
     }()
     
+    lazy var categoryPickerView: CategoryPickerView = {
+        let pickerView = CategoryPickerView { [weak self] category in print(category)
+            self?.selectedCategory = category
+        }
+        return pickerView
+    }()
+    
+    @objc func textFieldDidChange (_ sender: UITextField) {
+        
+    }
+    
+    lazy var saveBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        return barButtonItem
+    }()
+    
+    @objc func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    lazy var cancelBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        barButtonItem.isEnabled = false
+        return barButtonItem
+    }()
+    
+    @objc func cancelButtonPressed(_ sender : UIBarButtonItem ) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        navigationItem.rightBarButtonItem = saveBarButtonItem
         setupUI()
     }
     
@@ -64,8 +99,15 @@ class AddProductViewController: UIViewController {
         stackView.addArrangedSubview(titleTextField)
         stackView.addArrangedSubview(priceTextField)
         stackView.addArrangedSubview(descriptionTextView)
-        stackView.addArrangedSubview(imageURLTextField)
         
+        // category Picker
+        let hostingController = UIHostingController(rootView: categoryPickerView)
+        stackView.addArrangedSubview(hostingController.view)
+        addChild(hostingController)
+        hostingController.didMove(toParent: self)
+        
+        stackView.addArrangedSubview(imageURLTextField)
+
         view.addSubview(stackView)
         
         
@@ -79,7 +121,7 @@ class AddProductViewController: UIViewController {
 struct AddProductViewControllerRepresentable: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
-        AddProductViewController()
+        UINavigationController(rootViewController: AddProductViewController())
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

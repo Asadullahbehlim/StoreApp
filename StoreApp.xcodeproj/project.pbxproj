@@ -17,6 +17,7 @@
 		41D0118429ED5F7100E1E754 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0118329ED5F7100E1E754 /* AddProductViewController.swift */; };
 		41E6B18B29E932F300455603 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6B18A29E932F300455603 /* ProductModel.swift */; };
 		41E6B18F29E9384000455603 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6B18E29E9384000455603 /* ProductsTableViewController.swift */; };
+		41F9000B29EE60510093CCB8 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9000A29EE60510093CCB8 /* CategoryPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		41D0118329ED5F7100E1E754 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		41E6B18A29E932F300455603 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		41E6B18E29E9384000455603 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
+		41F9000A29EE60510093CCB8 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				41D0118129ED527300E1E754 /* ProductCellView.swift */,
+				41F9000A29EE60510093CCB8 /* CategoryPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				41C4CB1F29E7E3670038EA5D /* StoreHTTPClient.swift in Sources */,
 				41C4CB0A29E7E15D0038EA5D /* AppDelegate.swift in Sources */,
 				41E6B18B29E932F300455603 /* ProductModel.swift in Sources */,
+				41F9000B29EE60510093CCB8 /* CategoryPickerView.swift in Sources */,
 				41D0118429ED5F7100E1E754 /* AddProductViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
