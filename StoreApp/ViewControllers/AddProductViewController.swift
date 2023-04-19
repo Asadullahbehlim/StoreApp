@@ -9,9 +9,27 @@ import Foundation
 import UIKit
 import SwiftUI
 
+enum AddProductTextFieldType: Int {
+    case title
+    case price
+    case imageUrl
+}
+
+struct AddProductFormState {
+    var title: Bool = false
+    var price: Bool = false
+    var imageUrl: Bool = false
+    var description: Bool = false
+    
+    var isValid:Bool {
+        title && price && imageUrl && description
+    }
+}
+
 class AddProductViewController: UIViewController {
     
     private var selectedCategory: CategoryModel?
+    private var addProductFormState = AddProductFormState()
     
     lazy var titleTextField: UITextField = {
         let textfield = UITextField()
@@ -19,6 +37,7 @@ class AddProductViewController: UIViewController {
         textfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textfield.leftViewMode = .always
         textfield.borderStyle = .roundedRect
+        textfield.tag = AddProductTextFieldType.title.rawValue
         textfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return textfield
     }()
@@ -30,6 +49,7 @@ class AddProductViewController: UIViewController {
         textfield.leftViewMode = .always
         textfield.borderStyle = .roundedRect
         textfield.keyboardType = .numberPad
+        textfield.tag = AddProductTextFieldType.price.rawValue
         return textfield
     }()
     
@@ -39,6 +59,7 @@ class AddProductViewController: UIViewController {
         textfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textfield.leftViewMode = .always
         textfield.borderStyle = .roundedRect
+        textfield.tag = AddProductTextFieldType.imageUrl.rawValue
         return textfield
     }()
     
@@ -46,6 +67,7 @@ class AddProductViewController: UIViewController {
         let textView = UITextView()
         textView.contentInsetAdjustmentBehavior = .automatic
         textView.backgroundColor = UIColor.lightGray
+        textView.delegate = self
         return textView
     }()
     
@@ -57,7 +79,24 @@ class AddProductViewController: UIViewController {
     }()
     
     @objc func textFieldDidChange (_ sender: UITextField) {
+        guard let text = sender.text else {
+            return
+        }
+        switch sender.tag {
+        case  AddProductTextFieldType.title.rawValue:
+            addProductFormState.title = !text.isEmpty
+            
+        case AddProductTextFieldType.price.rawValue:
+            addProductFormState.price = !text.isEmpty && text.isNumeric
+            
+            
+        case AddProductTextFieldType.imageUrl.rawValue:
+            addProductFormState.imageUrl = !text.isEmpty
+        default:
+            break
+        }
         
+        saveBarButtonItem.isEnabled = addProductFormState.isValid
     }
     
     lazy var saveBarButtonItem: UIBarButtonItem = {
@@ -132,5 +171,12 @@ struct AddProductViewControllerRepresentable: UIViewControllerRepresentable {
 struct AddProductViewController_Previews: PreviewProvider {
     static var previews: some View {
         AddProductViewControllerRepresentable()
+    }
+}
+
+extension AddProductViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView){
+        addProductFormState.description = !textView.text.isEmpty
+        saveBarButtonItem.isEnabled = addProductFormState.isValid
     }
 }
