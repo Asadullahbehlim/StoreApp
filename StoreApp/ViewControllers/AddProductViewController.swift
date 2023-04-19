@@ -174,7 +174,7 @@ struct AddProductViewController_Previews: PreviewProvider {
     }
 }
 
-extension AddProductViewController: UITextFieldDelegate {
+extension AddProductViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView){
         addProductFormState.description = !textView.text.isEmpty
         saveBarButtonItem.isEnabled = addProductFormState.isValid
