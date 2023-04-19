@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4190ECC229EFC80C0061BD67 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190ECC129EFC80C0061BD67 /* String+Extension.swift */; };
 		41C4CB0A29E7E15D0038EA5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4CB0929E7E15D0038EA5D /* AppDelegate.swift */; };
 		41C4CB0E29E7E15D0038EA5D /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4CB0D29E7E15D0038EA5D /* CategoriesTableViewController.swift */; };
 		41C4CB1329E7E15E0038EA5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C4CB1229E7E15E0038EA5D /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4190ECC129EFC80C0061BD67 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		41C4CB0629E7E15D0038EA5D /* StoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C4CB0929E7E15D0038EA5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41C4CB0D29E7E15D0038EA5D /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				41C4CB2429E7EBEF0038EA5D /* URL+Extensions.swift */,
+				4190ECC129EFC80C0061BD67 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41E6B18F29E9384000455603 /* ProductsTableViewController.swift in Sources */,
+				4190ECC229EFC80C0061BD67 /* String+Extension.swift in Sources */,
 				41C4CB0E29E7E15D0038EA5D /* CategoriesTableViewController.swift in Sources */,
 				41C4CB2229E7E42F0038EA5D /* CategoryModel.swift in Sources */,
 				41C4CB2529E7EBEF0038EA5D /* URL+Extensions.swift in Sources */,
