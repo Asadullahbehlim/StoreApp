@@ -29,7 +29,7 @@ struct ProductCellView: View {
 
 struct ProductCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCellView(product: ProductModel(id: 4, title: "Handmade Fresh Table", price: 700, description: "Andy shoes are designed to keeping in...", category: CategoryModel(id: 5, name: "Others", image: "https://placeimg.com/640/480/any?r=0.591926261873231"),
+        ProductCellView(product: ProductModel(title: "Handmade Fresh Table", price: 700, description: "Andy shoes are designed to keeping in...", category: CategoryModel(id: 5, name: "Others", image: "https://placeimg.com/640/480/any?r=0.591926261873231"),
         images: [URL(string: "https://placeimg.com/640/480/any?r=0.9178516507833767")!]))
         .padding(12)
     }

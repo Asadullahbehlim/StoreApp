@@ -29,5 +29,8 @@ extension URL {
         return URL(string: "/api/v1/categories/\(categoryId)/products", relativeTo: Self.default)!
     }
     
+    static var createProduct: URL {
+        URL(string: "/api/v1/products/", relativeTo: Self.default)!
+    }
     
 }
